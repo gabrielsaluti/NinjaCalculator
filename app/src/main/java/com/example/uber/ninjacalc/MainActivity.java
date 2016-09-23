@@ -38,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         Button btnDiv;
         final TextView displayCalc;
         Button btn1;
+        Button btn2;
+        Button btn3;
+        Button btn4;
+        Button btn5;
+        Button btn6;
+        Button btn7;
+        Button btn8;
+        Button btn9;
+        Button btn0;
 
         // Finding Elements on the view
         btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -46,18 +55,85 @@ public class MainActivity extends AppCompatActivity {
         btnDiv = (Button) findViewById(R.id.btnDiv);
         displayCalc = (TextView) findViewById(R.id.displayCalc);
         btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn5 = (Button) findViewById(R.id.btn5);
+        btn6 = (Button) findViewById(R.id.btn6);
+        btn7 = (Button) findViewById(R.id.btn7);
+        btn8 = (Button) findViewById(R.id.btn8);
+        btn9 = (Button) findViewById(R.id.btn9);
+        btn0 = (Button) findViewById(R.id.btn0);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String num1 = "1";
-                displayCalc.setText(num1);
+                displayCalc.setText(displayCalc.getText()+"1");
             }
         });
 
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"2");
+            }
+        });
 
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"3");
+            }
+        });
 
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"4");
+            }
+        });
 
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"5");
+            }
+        });
+
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"6");
+            }
+        });
+
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"7");
+            }
+        });
+
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"8");
+            }
+        });
+
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"9");
+            }
+        });
+
+        btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"0");
+            }
+        });
 
 
         //Degug
