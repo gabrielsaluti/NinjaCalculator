@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.FloatProperty;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -18,6 +20,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
     static String Tag = "MainActivity";
+    static String Operacao = "";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnMult;
         Button btnDiv;
         Button btnEquals;
+        Button btnDelete;
         final TextView displayCalc;
         Button btn1;
         Button btn2;
@@ -49,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         Button btn9;
         Button btn0;
 
+
         // Finding Elements on the view
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnSub = (Button) findViewById(R.id.btnSub);
         btnMult = (Button) findViewById(R.id.btnMult);
         btnDiv = (Button) findViewById(R.id.btnDiv);
         btnEquals = (Button) findViewById(R.id.btnEquals);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
         displayCalc = (TextView) findViewById(R.id.displayCalc);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -141,6 +147,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayCalc.setText(displayCalc.getText()+"+");
+                Operacao = "+";
+            }
+        });
+
+        btnAdd.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                return false;
             }
         });
 
@@ -148,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayCalc.setText(displayCalc.getText()+"-");
+                Operacao = "-";
             }
         });
 
@@ -155,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayCalc.setText(displayCalc.getText()+"*");
+                Operacao = "*";
             }
         });
 
@@ -162,21 +179,82 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayCalc.setText(displayCalc.getText()+"/");
+                Operacao = "/";
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText("");
             }
         });
 
         btnEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String st = displayCalc.getText().toString();
+                String Fim, ini;
+                float num1,num2,total;
+                String[] bebe;
+                switch(Operacao) {
+                    case "-" :
+                        ini = displayCalc.getText().toString();
+                        bebe = ini.split("-");
+                        num1 = Float.parseFloat(bebe[0]);
+                        num2 = Float.parseFloat(bebe[1]);
+                        total = num1 - num2;
+                        Fim = Float.toString(total);
+                        displayCalc.setText(Fim);
+                        break;
 
-                String palavra = displayCalc.getText().toString();
-                String[] parts = palavra.split("-");
-                String part1 = parts[0];
-                String part2 = parts[1];
-                displayCalc.setText(part1);
+                    case "*" :
+                        ini = displayCalc.getText().toString();
+                        bebe = ini.split("\\*");
+                        num1 = Float.parseFloat(bebe[0]);
+                        num2 = Float.parseFloat(bebe[1]);
+                        total = num1 * num2;
+                        Fim = Float.toString(total);
+                        displayCalc.setText(Fim);
+                        break;
+
+                    case "/":
+                        ini = displayCalc.getText().toString();
+                        bebe = ini.split("/");
+                        num1 = Float.parseFloat(bebe[0]);
+                        num2 = Float.parseFloat(bebe[1]);
+                        total = num1 / num2;
+                        Fim = Float.toString(total);
+                        displayCalc.setText(Fim);
+                        break;
+
+                    case "+" :
+                        ini = displayCalc.getText().toString();
+                        bebe = ini.split("\\+");
+                        num1 = Float.parseFloat(bebe[0]);
+                        num2 = Float.parseFloat(bebe[1]);
+                        total = num1 + num2;
+                        Fim = Float.toString(total);
+                        displayCalc.setText(Fim);
+                        break;
+
+
+                    default:
+                        break;
+                }
+
             }
         });
+
+
+        /* CODIGO INT TO STRING CALCULO STRING TO INT
+         int foo = Integer.parseInt(bebe[0]);
+                int foo2 = Integer.parseInt(bebe[1]);
+                int fooFinal = foo + foo2;
+                String teste = Integer.toString(fooFinal);
+                displayCalc.setText(teste);
+
+         */
+
 
 
         //Degug

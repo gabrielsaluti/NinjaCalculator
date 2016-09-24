@@ -14,15 +14,17 @@
         android:layout_alignParentStart="true">
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="151dp"
-            android:inputType="number"
-            android:text=""
             android:ems="10"
             android:id="@+id/displayCalc"
             android:textAlignment="textEnd"
             android:textStyle="normal|bold"
-            android:textSize="45sp" />
+            android:textSize="45sp"
+            android:inputType="none"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:enabled="true" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -60,7 +62,9 @@
                 android:layout_height="80dp"
                 android:id="@+id/btnAdd"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#C0C5C1"
+                tools:longClickable="true"
+                android:longClickable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -183,11 +187,12 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:text="DEL"
+                android:text="Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnlogin"
+                android:id="@+id/btnDelete"
                 android:background="#C0C5C1" />
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
