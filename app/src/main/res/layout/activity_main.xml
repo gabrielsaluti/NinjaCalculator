@@ -24,7 +24,8 @@
             android:inputType="none"
             android:cursorVisible="false"
             android:editable="false"
-            android:enabled="true" />
+            android:enabled="true"
+            android:backgroundTint="#F26419" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -187,7 +188,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:text="Button"
+                android:text="Del"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnDelete"
