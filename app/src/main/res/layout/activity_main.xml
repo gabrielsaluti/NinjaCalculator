@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="151dp"
             android:inputType="number"
-            android:text="NinjaCalc"
+            android:text=""
             android:ems="10"
             android:id="@+id/displayCalc"
             android:textAlignment="textEnd"
@@ -156,7 +156,7 @@
                 android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:id="@+id/button15"
+                android:id="@+id/btn0"
                 android:layout_weight="1"
                 android:background="#C0C5C1" />
 
@@ -164,7 +164,7 @@
                 android:text="="
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:id="@+id/button14"
+                android:id="@+id/btnEquals"
                 android:layout_weight="1"
                 android:background="#C0C5C1" />
 
