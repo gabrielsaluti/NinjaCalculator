@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnSub;
         Button btnMult;
         Button btnDiv;
+        Button btnEquals;
         final TextView displayCalc;
         Button btn1;
         Button btn2;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnSub = (Button) findViewById(R.id.btnSub);
         btnMult = (Button) findViewById(R.id.btnMult);
         btnDiv = (Button) findViewById(R.id.btnDiv);
+        btnEquals = (Button) findViewById(R.id.btnEquals);
         displayCalc = (TextView) findViewById(R.id.displayCalc);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -132,6 +134,47 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayCalc.setText(displayCalc.getText()+"0");
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"+");
+            }
+        });
+
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"-");
+            }
+        });
+
+        btnMult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"*");
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+"/");
+            }
+        });
+
+        btnEquals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String st = displayCalc.getText().toString();
+
+                String palavra = displayCalc.getText().toString();
+                String[] parts = palavra.split("-");
+                String part1 = parts[0];
+                String part2 = parts[1];
+                displayCalc.setText(part1);
             }
         });
 
