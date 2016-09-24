@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn8;
         Button btn9;
         Button btn0;
+        final Intent itPassword = new Intent(this, Password.class);
 
 
         // Finding Elements on the view
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
+                startActivity(itPassword);
                 return false;
             }
         });
