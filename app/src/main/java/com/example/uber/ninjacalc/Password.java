@@ -95,8 +95,8 @@ public class Password extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() == 1) {
-                    startActivity(it);
-                    if (password1.getText().toString() + password2.getText().toString() + password3.getText().toString() + password4.getText().toString() == "1111"){
+
+                    if (password4.getText().toString().equals("1") && password1.getText().toString().equals("1") && password2.getText().toString().equals("1") && password3.getText().toString().equals("1")){
                         startActivity(it);
 
                     };
@@ -110,4 +110,5 @@ public class Password extends AppCompatActivity {
         });
 
     }
+
 }
