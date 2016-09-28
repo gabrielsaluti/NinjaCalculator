@@ -15,7 +15,6 @@
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="151dp"
             android:ems="10"
             android:id="@+id/displayCalc"
             android:textAlignment="textEnd"
@@ -25,7 +24,9 @@
             android:cursorVisible="false"
             android:editable="false"
             android:enabled="true"
-            android:backgroundTint="#F26419" />
+            android:backgroundTint="#F2F4F3"
+            android:layout_height="236dp"
+            android:background="#F2F4F3" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -38,34 +39,34 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/btn7"
                 android:layout_weight="1"
-                android:layout_height="80dp"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="8"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn8"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="9"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn9"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="+"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btnAdd"
                 android:layout_weight="1"
-                android:background="#C0C5C1"
+                android:background="#5299D3"
                 tools:longClickable="true"
-                android:longClickable="true" />
+                android:longClickable="true"
+                android:layout_height="75dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,34 +77,34 @@
             <Button
                 android:text="4"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn4"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="5"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn5"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="6"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn6"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="-"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btnSub"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,34 +115,34 @@
             <Button
                 android:text="1"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn1"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="2"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn2"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="3"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn3"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="/"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btnDiv"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -152,34 +153,34 @@
             <Button
                 android:text="."
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/button16"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="0"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btn0"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="="
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btnEquals"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
             <Button
                 android:text="*"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
                 android:id="@+id/btnMult"
                 android:layout_weight="1"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -190,9 +191,9 @@
             <Button
                 android:text="Del"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnDelete"
-                android:background="#C0C5C1" />
+                android:background="#5299D3"
+                android:layout_height="75dp" />
 
         </LinearLayout>
     </LinearLayout>
