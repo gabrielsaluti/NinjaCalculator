@@ -1,18 +1,13 @@
 package com.example.uber.ninjacalc;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.FloatProperty;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -23,39 +18,36 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends AppCompatActivity {
     static String Tag = "MainActivity";
     static String Operacao = "";
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     private GoogleApiClient client;
+    private Context ctx = this;
+
+    protected Button btnAdd;
+    protected Button btnSub;
+    protected Button btnMult;
+    protected Button btnDiv;
+    protected Button btnEquals;
+    protected Button btnDelete;
+    protected TextView displayCalc;
+    protected Button btn1;
+    protected Button btn2;
+    protected Button btn3;
+    protected Button btn4;
+    protected Button btn5;
+    protected Button btn6;
+    protected Button btn7;
+    protected Button btn8;
+    protected Button btn9;
+    protected Button btn0;
+    protected Button btnDot;
+    float numAdd= 0,numSub = 0,numDiv = 0,numMult = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-        Button btnAdd;
-        Button btnSub;
-        Button btnMult;
-        Button btnDiv;
-        Button btnEquals;
-        Button btnDelete;
-        final TextView displayCalc;
-        Button btn1;
-        Button btn2;
-        Button btn3;
-        Button btn4;
-        Button btn5;
-        Button btn6;
-        Button btn7;
-        Button btn8;
-        Button btn9;
-        Button btn0;
         final Intent itPassword = new Intent(this, Password.class);
-
 
         // Finding Elements on the view
         btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -65,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         btnEquals = (Button) findViewById(R.id.btnEquals);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         displayCalc = (TextView) findViewById(R.id.displayCalc);
+        btnDot = (Button) findViewById(R.id.btnDot);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
@@ -147,6 +140,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayCalc.setText(displayCalc.getText()+".");
+            }
+        });
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,43 +202,39 @@ public class MainActivity extends AppCompatActivity {
                 String[] bebe;
                 switch(Operacao) {
                     case "-" :
-                        ini = displayCalc.getText().toString();
-                        bebe = ini.split("-");
-                        num1 = Float.parseFloat(bebe[0]);
-                        num2 = Float.parseFloat(bebe[1]);
-                        total = num1 - num2;
-                        Fim = Float.toString(total);
-                        displayCalc.setText(Fim);
+                        try {
+                            btnSub(v);
+                        } catch (Exception e) {
+                            Log.i(Tag, "Hey-");
+                            subAgain(v);
+                        }
                         break;
 
                     case "*" :
-                        ini = displayCalc.getText().toString();
-                        bebe = ini.split("\\*");
-                        num1 = Float.parseFloat(bebe[0]);
-                        num2 = Float.parseFloat(bebe[1]);
-                        total = num1 * num2;
-                        Fim = Float.toString(total);
-                        displayCalc.setText(Fim);
+                        try {
+                            btnMult(v);
+                        } catch (Exception e) {
+                            Log.i(Tag, "Hey*");
+                            multAgain(v);
+                        }
                         break;
 
                     case "/":
-                        ini = displayCalc.getText().toString();
-                        bebe = ini.split("/");
-                        num1 = Float.parseFloat(bebe[0]);
-                        num2 = Float.parseFloat(bebe[1]);
-                        total = num1 / num2;
-                        Fim = Float.toString(total);
-                        displayCalc.setText(Fim);
+                        try {
+                            btnDiv(v);
+                        } catch (Exception e) {
+                            Log.i(Tag, "Hey/");
+                            divAgain(v);
+                        }
                         break;
 
                     case "+" :
-                        ini = displayCalc.getText().toString();
-                        bebe = ini.split("\\+");
-                        num1 = Float.parseFloat(bebe[0]);
-                        num2 = Float.parseFloat(bebe[1]);
-                        total = num1 + num2;
-                        Fim = Float.toString(total);
-                        displayCalc.setText(Fim);
+                        try {
+                            btnAdd(v);
+                        } catch (Exception e) {
+                            Log.i(Tag, "Hey+");
+                            addAgain(v);
+                        }
                         break;
 
 
@@ -256,32 +252,110 @@ public class MainActivity extends AppCompatActivity {
                 int fooFinal = foo + foo2;
                 String teste = Integer.toString(fooFinal);
                 displayCalc.setText(teste);
-
          */
-
-
-
-        //Degug
-        /*
-        Button btnplus = (Button) findViewById(R.id.btnplus);
-        btnplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(Tag, "Hey its working!");
-            }
-        });
-
-        Button btnminus = (Button) findViewById(R.id.btnminus);
-        final Intent it = new Intent(this, Password.class);
-        btnminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(it);
-            }
-        });
-
-*/
     }
+
+    public void btnAdd(View v) {
+        String Fim, ini;
+        float num1,num2, total;
+        String[] bebe;
+
+        ini = displayCalc.getText().toString();
+        bebe = ini.split("\\+");
+        num1 = Float.parseFloat(bebe[0]);
+        num2 = Float.parseFloat(bebe[1]);
+        numAdd = num2;
+        total = num1 + num2;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+
+    }
+
+    public void btnMult(View v) {
+        String Fim, ini;
+        float num1,num2,total;
+        String[] bebe;
+
+        ini = displayCalc.getText().toString();
+        bebe = ini.split("\\*");
+        num1 = Float.parseFloat(bebe[0]);
+        num2 = Float.parseFloat(bebe[1]);
+        numMult = num2;
+        total = num1 * num2;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void btnDiv(View v) {
+        String Fim, ini;
+        float num1,num2,total;
+        String[] bebe;
+
+        ini = displayCalc.getText().toString();
+        bebe = ini.split("/");
+        num1 = Float.parseFloat(bebe[0]);
+        num2 = Float.parseFloat(bebe[1]);
+        numDiv = num2;
+        total = num1 / num2;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void btnSub(View v) {
+        String Fim, ini;
+        float num1,num2,total;
+        String[] bebe;
+
+        ini = displayCalc.getText().toString();
+        bebe = ini.split("-");
+        num1 = Float.parseFloat(bebe[0]);
+        num2 = Float.parseFloat(bebe[1]);
+        numSub = num2;
+        total = num1 - num2;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void addAgain(View v) {
+        String ini, Fim;
+        float total,num;
+        ini = displayCalc.getText().toString();
+        num = Float.parseFloat(ini);
+        total = num + numAdd;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void subAgain(View v) {
+        String ini, Fim;
+        float total,num;
+        ini = displayCalc.getText().toString();
+        num = Float.parseFloat(ini);
+        total = num - numSub;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void multAgain(View v) {
+        String ini, Fim;
+        float total,num;
+        ini = displayCalc.getText().toString();
+        num = Float.parseFloat(ini);
+        total = num * numMult;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
+    public void divAgain(View v) {
+        String ini, Fim;
+        float total,num;
+        ini = displayCalc.getText().toString();
+        num = Float.parseFloat(ini);
+        total = num / numDiv;
+        Fim = Float.toString(total);
+        displayCalc.setText(Fim);
+    }
+
 
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
