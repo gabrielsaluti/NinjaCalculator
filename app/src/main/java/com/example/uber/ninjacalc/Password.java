@@ -1,5 +1,6 @@
 package com.example.uber.ninjacalc;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
-public class Password extends AppCompatActivity {
+public class Password extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

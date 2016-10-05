@@ -1,9 +1,10 @@
 package com.example.uber.ninjacalc;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Galeria extends AppCompatActivity {
+public class Galeria extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

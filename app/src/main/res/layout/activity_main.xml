@@ -25,7 +25,7 @@
             android:editable="false"
             android:enabled="true"
             android:backgroundTint="#F2F4F3"
-            android:layout_height="236dp"
+            android:layout_height="202dp"
             android:background="#F2F4F3" />
 
         <LinearLayout
