@@ -1,6 +1,9 @@
 package com.example.uber.ninjacalc;
 
+<<<<<<< HEAD
 import android.app.Activity;
+=======
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -304,7 +307,11 @@ public class MainActivity extends Activity {
 
     public void btnSub(View v) {
         String Fim, ini;
+<<<<<<< HEAD
         float num1,num2,num3,num4,num5,total;
+=======
+        float num1,num2,total;
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
         String[] bebe;
 
         ini = displayCalc.getText().toString();

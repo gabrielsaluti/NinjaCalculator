@@ -25,7 +25,11 @@
             android:editable="false"
             android:enabled="true"
             android:backgroundTint="#F2F4F3"
+<<<<<<< HEAD
             android:layout_height="294dp"
+=======
+            android:layout_height="236dp"
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
             android:background="#F2F4F3" />
 
         <LinearLayout
@@ -41,8 +45,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="8"
@@ -51,8 +59,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="9"
@@ -61,20 +73,32 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="+"
                 android:layout_width="wrap_content"
                 android:id="@+id/btnAdd"
                 android:layout_weight="1"
+<<<<<<< HEAD
                 android:background="#44CCFF"
                 tools:longClickable="true"
                 android:longClickable="true"
                 android:layout_height="75dp"
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:background="#5299D3"
+                tools:longClickable="true"
+                android:longClickable="true"
+                android:layout_height="75dp"
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
         </LinearLayout>
 
         <LinearLayout
@@ -89,8 +113,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="5"
@@ -99,8 +127,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="6"
@@ -109,18 +141,28 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="-"
                 android:layout_width="wrap_content"
                 android:id="@+id/btnSub"
                 android:layout_weight="1"
+<<<<<<< HEAD
                 android:background="#44CCFF"
                 android:layout_height="75dp"
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:background="#5299D3"
+                android:layout_height="75dp"
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
         </LinearLayout>
 
         <LinearLayout
@@ -135,8 +177,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="2"
@@ -145,8 +191,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="3"
@@ -155,18 +205,28 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="/"
                 android:layout_width="wrap_content"
                 android:id="@+id/btnDiv"
                 android:layout_weight="1"
+<<<<<<< HEAD
                 android:background="#44CCFF"
                 android:layout_height="75dp"
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:background="#5299D3"
+                android:layout_height="75dp"
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
         </LinearLayout>
 
         <LinearLayout
@@ -181,8 +241,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="0"
@@ -191,8 +255,12 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="="
@@ -201,18 +269,28 @@
                 android:layout_weight="1"
                 android:background="#5299D3"
                 android:layout_height="75dp"
+<<<<<<< HEAD
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
 
             <Button
                 android:text="*"
                 android:layout_width="wrap_content"
                 android:id="@+id/btnMult"
                 android:layout_weight="1"
+<<<<<<< HEAD
                 android:background="#44CCFF"
                 android:layout_height="75dp"
                 android:textSize="30sp"
                 tools:fontFamily="sans-serif-condensed" />
+=======
+                android:background="#5299D3"
+                android:layout_height="75dp"
+                android:textSize="24sp" />
+>>>>>>> 6feda5b1b7484618e8e38b2496a9b37076200b17
         </LinearLayout>
 
         <LinearLayout
