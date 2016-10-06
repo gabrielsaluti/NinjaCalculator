@@ -15,5 +15,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/lvDocs" />
+        android:id="@+id/lvDocs"
+        android:elevation="1dp"
+        android:textColor="#F7CB15"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 </LinearLayout>
