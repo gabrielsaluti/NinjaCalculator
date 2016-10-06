@@ -3,7 +3,6 @@ package com.example.uber.ninjacalc;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class TelaConfiguracoes extends Activity {
         setContentView(R.layout.activity_tela_configuracoes);
 
         final Intent itSenha = new Intent(this, TelaConfigSenha.class);
+        final Intent itLayout = new Intent(this, TelaConfigLayout.class);
 
 
         listaconfig = (ListView) findViewById(R.id.listaconfig);
@@ -53,6 +53,9 @@ public class TelaConfiguracoes extends Activity {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 if (position == 0) {
                     startActivity(itSenha);
+                }
+                else if (position == 1){
+                    startActivity(itLayout);
                 }
             }
         });

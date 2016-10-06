@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tela_config_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.uber.ninjacalc.TelaConfigLayout">
+
+    <TextView
+        android:text="Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="60dp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lblLayout" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rdGroup"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/lblLayout"
+        android:layout_alignParentStart="false">
+
+        <RadioButton
+            android:text="Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbDark"
+            android:layout_weight="1"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:text="White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbWhite"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp" />
+
+        <RadioButton
+            android:text="Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblLayout"
+            android:layout_weight="1"
+            android:checked="false"
+            android:elevation="0dp"
+            android:id="@+id/rbBlue"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp" />
+
+    </RadioGroup>
+
+</RelativeLayout>

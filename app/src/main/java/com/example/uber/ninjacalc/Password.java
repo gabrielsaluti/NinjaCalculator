@@ -2,21 +2,27 @@ package com.example.uber.ninjacalc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
+
+import java.util.ArrayList;
 
 public class Password extends Activity {
 
+    private ArrayList<Config> configs;
+    private static final String TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
 
-
+        final Ninja_DB banco = new Ninja_DB(this);
         final Intent it = new Intent(this,Menu.class);
         final EditText password1;
         final EditText password2;
@@ -27,6 +33,8 @@ public class Password extends Activity {
         password2 = (EditText) findViewById(R.id.password2);
         password3 = (EditText) findViewById(R.id.password3);
         password4 = (EditText) findViewById(R.id.password4);
+
+        configs = banco.listarConfig();
 
         password1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,8 +104,10 @@ public class Password extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() == 1) {
-
-                    if (password4.getText().toString().equals("1") && password1.getText().toString().equals("1") && password2.getText().toString().equals("1") && password3.getText().toString().equals("1")){
+                    String senha = password1.getText().toString()+password2.getText().toString()+password3.getText().toString()+password4.getText().toString();
+                    //Log.d(TAG,senha);
+                    //Log.d(TAG, configs.get(0).getSenha());
+                    if (senha.toString().equals(configs.get(0).getSenha().toString())){
                         startActivity(it);
 
                     };
