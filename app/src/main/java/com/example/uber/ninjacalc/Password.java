@@ -2,6 +2,7 @@ package com.example.uber.ninjacalc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,16 @@ import java.util.ArrayList;
 
 public class Password extends Activity {
 
+    SharedPreferences prefs = null;
     private ArrayList<Config> configs;
     private static final String TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
+
+        prefs = getSharedPreferences("com.example.uber.ninjacalc", MODE_PRIVATE);
+
 
 
         final Ninja_DB banco = new Ninja_DB(this);
@@ -33,6 +38,13 @@ public class Password extends Activity {
         password2 = (EditText) findViewById(R.id.password2);
         password3 = (EditText) findViewById(R.id.password3);
         password4 = (EditText) findViewById(R.id.password4);
+
+        configs = banco.listarConfig();
+
+        if (configs.size() == 0){
+            Config config = new Config ("1234", "12345",1 );
+            banco.insert(config);
+        }
 
         configs = banco.listarConfig();
 
@@ -121,5 +133,13 @@ public class Password extends Activity {
         });
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        if (prefs.getBoolean("firstrun", true)) {
+            Log.d(TAG,"First Run");
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
+    }
 }
