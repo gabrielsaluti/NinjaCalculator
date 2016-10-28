@@ -39,6 +39,7 @@ public class Password extends Activity {
         password3 = (EditText) findViewById(R.id.password3);
         password4 = (EditText) findViewById(R.id.password4);
 
+
         configs = banco.listarConfig();
 
         if (configs.size() == 0){

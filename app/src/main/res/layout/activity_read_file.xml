@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_documentos"
+    android:id="@+id/activity_read_file"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.uber.ninjacalc.Documentos"
-    android:background="#424C55"
-    android:showDividers="beginning"
-    android:orientation="vertical">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.uber.ninjacalc.ReadFileActivity"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
+        android:title="TESTE"
         android:layout_width="match_parent"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
@@ -20,16 +20,15 @@
         android:layout_weight="0"
         android:layout_height="60dp" />
 
-    <ListView
+    <EditText
+        android:text="Text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/lvDocs"
-        android:listSelector="@android:drawable/list_selector_background"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/txtView"
+        android:gravity="top|center_vertical"
         android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

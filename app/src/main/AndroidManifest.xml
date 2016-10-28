@@ -2,18 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uber.ninjacalc">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission-sdk-23>
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission-sdk-23>
-    <uses-permission-sdk-23 android:name="android.permission.MANAGE_DOCUMENTS"></uses-permission-sdk-23>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.MANAGE_DOCUMENTS" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="NinjaCalculator"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,8 @@
         <activity android:name=".Galeria" />
         <activity android:name=".TelaConfiguracoes" />
         <activity android:name=".TelaConfigSenha" />
-        <activity android:name=".TelaConfigLayout"></activity>
+        <activity android:name=".TelaConfigLayout" />
+        <activity android:name=".ReadFileActivity" />
     </application>
 
 </manifest>
