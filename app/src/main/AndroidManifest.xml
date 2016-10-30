@@ -38,6 +38,7 @@
         <activity android:name=".TelaConfigSenha" />
         <activity android:name=".TelaConfigLayout" />
         <activity android:name=".ReadFileActivity" />
+        <activity android:name=".pastaDownloads"></activity>
     </application>
 
 </manifest>
