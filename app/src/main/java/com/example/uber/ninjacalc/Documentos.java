@@ -15,13 +15,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,6 +53,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
     private File[] detalhe;
     private FloatingActionButton fbtnAdd;
     private String path;
+    private ImageButton btnmenu;
+    private int pos;
 
 
     @Override
@@ -67,6 +73,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
                 startActivity(itDownload);
             }
         });
+
+
 
         //if(ContextCompat.checkSelfPermission(this,
         //        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
@@ -99,6 +107,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             TextView t = (TextView) view.findViewById(R.id.tNome);
             TextView d = (TextView) view.findViewById(R.id.tDetalhe);
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
+            ImageButton btn = (ImageButton) view.findViewById(R.id.btnmenu);
+            btn.setTag(position);
             if(position%2==0)
                 lay.setBackgroundColor(Color.parseColor("#CCCCCC"));
             t.setText(a[position]);
@@ -118,37 +128,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            int pos, long id) {
                 final int position = pos;
-                AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
-                alertDialog.setTitle("Tornar Público");
-                alertDialog.setMessage("Você deseja tornar este arquivo público novamente?");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
 
-                                String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/";
-                                String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/"+files[position].toString();
-                                File fileSrc = new File(src);
-                                File fileDst = new File(dst);
-                                try {
-                                    copyFile(fileSrc,fileDst, files[position].toString());
-                                    Log.d(TAG,"copiado de volta");
-                                    File fdelete = new File(src);
-                                    fdelete.delete();
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(ctx,"Erro ao tornar arquivo público.",Toast.LENGTH_LONG).show();
-                                }
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
 
                 return true;
             }
@@ -192,4 +172,54 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         outStream.close();
     }
 
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menulistview, popup.getMenu());
+        pos = (Integer) v.getTag();
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
+                alertDialog.setTitle("Tornar Público");
+                alertDialog.setMessage("Você deseja tornar este arquivo público novamente?");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/";
+                                String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/"+files[pos].toString();
+                                File fileSrc = new File(src);
+                                File fileDst = new File(dst);
+                                try {
+                                    copyFile(fileSrc,fileDst, files[pos].toString());
+                                    Log.d(TAG,"copiado de volta");
+                                    File fdelete = new File(src);
+                                    fdelete.delete();
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(ctx,"Erro ao tornar arquivo público.",Toast.LENGTH_LONG).show();
+                                }
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+
+
+
+
+
+                return false;
+            }
+        });
+
+    }
 }

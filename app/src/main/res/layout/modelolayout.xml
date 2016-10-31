@@ -4,14 +4,17 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:focusable="false"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="63dp"
         android:layout_marginTop="5dp"
-        android:layout_weight="0.67">
+        android:layout_weight="1"
+        android:focusable="false">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,15 +23,27 @@
             android:text="Nome Arquivo"
             android:id="@+id/tNome"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data Modificação"
+            android:text="Data Última Modificação:"
             android:id="@+id/tDetalhe"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
     </LinearLayout>
+
+    <ImageButton
+        android:layout_height="63dp"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        android:background="@null"
+        android:onClick="showPopup"
+        android:layout_width="50dp"
+        android:id="@+id/btnmenu" />
 
 </LinearLayout>

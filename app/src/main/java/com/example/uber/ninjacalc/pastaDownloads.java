@@ -3,15 +3,20 @@ package com.example.uber.ninjacalc;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +38,8 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
     private String[] files;
     private File[] detalhe;
     private Context ctx = this;
-
+    private int pos;
+    private ImageButton btnmenu;
 
 
     @Override
@@ -42,6 +48,8 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_pasta_downloads);
 
         listaDownloads = (ListView) findViewById(R.id.lvDown);
+        btnmenu = (ImageButton) findViewById(R.id.btnmenu);
+
 
 
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
@@ -65,6 +73,8 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
             TextView t = (TextView) view.findViewById(R.id.tNome);
             TextView d = (TextView) view.findViewById(R.id.tDetalhe);
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
+            ImageButton btn = (ImageButton) view.findViewById(R.id.btnmenu);
+            btn.setTag(position);
             if(position%2==0)
                 lay.setBackgroundColor(Color.parseColor("#CCCCCC"));
             t.setText(a[position]);
@@ -76,28 +86,56 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
         listaDownloads.setChoiceMode(listaDownloads.CHOICE_MODE_MULTIPLE);
         listaDownloads.setAdapter(adapter);
         listaDownloads.setOnItemClickListener(this);
+
+        listaDownloads.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                return false;
+            }
+        });
     }
+
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[position].toString());
-        Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/Teste/");
-        String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[position].toString();
-        String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/";
-        File fileSrc = new File(src);
-        File fileDst = new File(dst);
-        try {
-            copyFile(fileSrc,fileDst, files[position].toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(ctx,"Erro ao realizar a cópia do arquivo.",Toast.LENGTH_LONG).show();
-        }
-        final Intent itDocumentos = new Intent(this, Documentos.class);
-        startActivity(itDocumentos);
-
     }
 
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menulistviewadd, popup.getMenu());
+        pos = (Integer) v.getTag();
+        //Toast.makeText(ctx,""+pos,Toast.LENGTH_LONG).show();
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[pos].toString());
+                Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/Teste/");
+
+                // Definir arquivo origem e destino
+                String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[pos].toString();
+                String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/";
+                File fileSrc = new File(src);
+                File fileDst = new File(dst);
+                try {
+                    // Copiar arquivo original para a pasta escondida
+                    copyFile(fileSrc,fileDst, files[pos].toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(ctx,"Erro ao realizar a cópia do arquivo.",Toast.LENGTH_LONG).show();
+                }
+
+                // Fechar activity
+                finish();
+                return false;
+            }
+        });
+    }
 
     private void copyFile(File src, File dst, String nomearquivo) throws IOException {
         FileInputStream inStream = new FileInputStream(src);
