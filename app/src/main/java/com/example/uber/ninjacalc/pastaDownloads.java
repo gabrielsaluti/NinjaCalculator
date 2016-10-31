@@ -131,6 +131,8 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
                 }
 
                 // Fechar activity
+                final Intent itDocs = new Intent(ctx, Documentos.class);
+                startActivity(itDocs);
                 finish();
                 return false;
             }

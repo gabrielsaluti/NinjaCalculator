@@ -71,6 +71,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             public void onClick(View v) {
                 final Intent itDownload = new Intent(ctx, pastaDownloads.class);
                 startActivity(itDownload);
+                finish();
             }
         });
 
@@ -197,6 +198,9 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
                                     Log.d(TAG,"copiado de volta");
                                     File fdelete = new File(src);
                                     fdelete.delete();
+                                    finish();
+                                    final Intent itDocs = new Intent(ctx, Documentos.class);
+                                    startActivity(itDocs);
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -212,11 +216,6 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
                             }
                         });
                 alertDialog.show();
-
-
-
-
-
                 return false;
             }
         });
