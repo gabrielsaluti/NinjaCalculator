@@ -83,7 +83,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, response);
         // }
 
-        path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste";
+        //path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste";
+        path = Environment.getExternalStorageDirectory().toString() + "/Hide/.NinjaHide";
         Log.d(TAG,path);
         curFolder = new File(path);
         files = curFolder.list();
@@ -91,6 +92,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
 
         if (files == null){
             Log.d(TAG,"ta nulo");
+            //files = new String[1];
+            //files[0] = "Não existem documentos adicionados";
         }
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(),
@@ -102,9 +105,9 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             LayoutInflater inflater = LayoutInflater.from(ctx);
             View view = inflater.inflate(R.layout.modelolayout, parent, false);
             String[] a = files;
-            File[] b = detalhe;
+            //File[] b = detalhe;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            String data = df.format(b[position].lastModified());
+            //String data = df.format(b[position].lastModified());
             TextView t = (TextView) view.findViewById(R.id.tNome);
             TextView d = (TextView) view.findViewById(R.id.tDetalhe);
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
@@ -113,7 +116,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             if(position%2==0)
                 lay.setBackgroundColor(Color.parseColor("#CCCCCC"));
             t.setText(a[position]);
-            d.setText("Última modificação: "+data);
+            //d.setText("Última modificação: "+data);
             return view;
 
 
@@ -190,7 +193,9 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
                             public void onClick(DialogInterface dialog, int which) {
 
                                 String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/";
-                                String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/"+files[pos].toString();
+                                //String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/"+files[pos].toString();
+                                String src = path + "/" + files[pos].toString();
+                                Log.d(TAG,src);
                                 File fileSrc = new File(src);
                                 File fileDst = new File(dst);
                                 try {

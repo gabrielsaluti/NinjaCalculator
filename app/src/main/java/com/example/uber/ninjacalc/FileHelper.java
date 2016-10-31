@@ -17,7 +17,8 @@ import java.io.InputStreamReader;
  */
 
 public class FileHelper {
-    final static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+    //final static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+    final static String path = Environment.getExternalStorageDirectory().toString() + "/Hide/.NinjaHide";
     final static String TAG = FileHelper.class.getName();
 
     public static  String ReadFile( Context context, String filename){

@@ -40,12 +40,34 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
     private Context ctx = this;
     private int pos;
     private ImageButton btnmenu;
+    private File hideFolder;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pasta_downloads);
+
+
+        hideFolder = new File(Environment.getExternalStorageDirectory(),"Hide/.NinjaHide");
+        Log.d(TAG,"Pasta referenciada: "+hideFolder.toString());
+        if (hideFolder.exists()){
+            File noMedia = new File(hideFolder.toString(), "/.nomedia");
+            if (noMedia.exists()){
+                Log.d(TAG, "Arquivo já existe");
+            }
+            /*else {
+                try {
+                    noMedia.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }*/
+        }
+        else {
+            hideFolder.mkdirs();
+        }
+
 
         listaDownloads = (ListView) findViewById(R.id.lvDown);
         btnmenu = (ImageButton) findViewById(R.id.btnmenu);
@@ -116,15 +138,17 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
             public boolean onMenuItemClick(MenuItem item) {
                 Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[pos].toString());
                 Log.d(TAG,Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/Teste/");
-
+                Log.d(TAG,hideFolder.toString()+"/");
                 // Definir arquivo origem e destino
                 String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/" +files[pos].toString();
-                String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/";
+                //String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/";
+                String dst = hideFolder.toString()+"/";
                 File fileSrc = new File(src);
                 File fileDst = new File(dst);
                 try {
                     // Copiar arquivo original para a pasta escondida
                     copyFile(fileSrc,fileDst, files[pos].toString());
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(ctx,"Erro ao realizar a cópia do arquivo.",Toast.LENGTH_LONG).show();
@@ -134,6 +158,8 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
                 final Intent itDocs = new Intent(ctx, Documentos.class);
                 startActivity(itDocs);
                 finish();
+                File fdelete = new File(src);
+                fdelete.delete();
                 return false;
             }
         });
