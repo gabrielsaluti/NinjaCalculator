@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TelaConfiguracoes extends Activity {
+public class TelaConfiguracoes extends AppCompatActivity {
 
     private ArrayList<Config> configs;
     private ListView listaconfig;
@@ -23,6 +25,10 @@ public class TelaConfiguracoes extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_configuracoes);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Settings");
 
         final Intent itSenha = new Intent(this, TelaConfigSenha.class);
         final Intent itLayout = new Intent(this, TelaConfigLayout.class);

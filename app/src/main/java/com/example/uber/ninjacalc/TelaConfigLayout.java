@@ -3,6 +3,8 @@ package com.example.uber.ninjacalc;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,7 +16,7 @@ import static android.graphics.Color.BLACK;
 import static android.graphics.Color.BLUE;
 import static android.graphics.Color.WHITE;
 
-public class TelaConfigLayout extends Activity {
+public class TelaConfigLayout extends AppCompatActivity {
 
     private RadioButton rbBlue;
     private RadioButton rbDark;
@@ -32,6 +34,11 @@ public class TelaConfigLayout extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_config_layout);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Layout");
+
 
         rbBlue = (RadioButton) findViewById(R.id.rbBlue);
         rbDark = (RadioButton) findViewById(R.id.rbDark);

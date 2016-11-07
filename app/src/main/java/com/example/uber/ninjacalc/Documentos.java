@@ -1,18 +1,12 @@
 package com.example.uber.ninjacalc;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
@@ -26,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,6 +56,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         setContentView(R.layout.activity_documentos);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Documents");
 
         listaDocs = (ListView) findViewById(R.id.lvDocs);
         fbtnAdd = (FloatingActionButton) findViewById(R.id.fbtnAdicionar);
@@ -142,9 +137,11 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Intent itTexto = new Intent(this, ReadFileActivity.class);
+        final Intent itPDF = new Intent(this, PDFReader.class);
         //Log.d(TAG,"clicado");
         //Toast.makeText(ctx,"cliquei",Toast.LENGTH_LONG).show();
         itTexto.putExtra("nome",files[position].toString());
+        itPDF.putExtra("nome",files[position].toString());
 
         String nome = files[position].toString();
         String[] arquivo = nome.split("\\.");
@@ -154,7 +151,10 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         if (tipoArquivo.equals("txt")){
             startActivity(itTexto);
         }
-        else {
+        else if (tipoArquivo.equals("pdf")){
+            startActivity(itPDF);
+        }
+        else if (1==1){
             Toast.makeText(this,"Não podemos abrir arquivos ."+ tipoArquivo,Toast.LENGTH_SHORT).show();
         }
 

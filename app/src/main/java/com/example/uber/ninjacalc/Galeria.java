@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.GridView;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class Galeria extends Activity {
+public class Galeria extends AppCompatActivity {
 
     private GridView listaimg;
     private File curFolder;
@@ -33,6 +34,11 @@ public class Galeria extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galeria);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Gallery");
+
 
 
         listaimg = (GridView) findViewById(R.id.GridImg);

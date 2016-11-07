@@ -24,7 +24,20 @@
             android:minHeight="?attr/actionBarSize"
             android:id="@+id/toolbar"
             android:layout_weight="0"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbarTitle"
+                android:text="Documents"
+                android:textAlignment="center"
+                android:textSize="40dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+        </android.support.v7.widget.Toolbar>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -50,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="@dimen/fab_margin"
-                app:srcCompat="@android:drawable/ic_input_add"
+                android:src="@drawable/ic_create_new_folder_black_24dp"
+                app:backgroundTint="@color/common_google_signin_btn_text_dark_pressed"
                 />
         </FrameLayout>
 
