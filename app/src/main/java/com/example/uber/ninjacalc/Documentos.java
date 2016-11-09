@@ -17,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -34,7 +36,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 
-public class Documentos extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class Documentos extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
 
     private ListView listaDocs;
     private File curFolder;
@@ -48,6 +50,9 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
     private String path;
     private ImageButton btnmenu;
     private int pos;
+    private Boolean isFabOpen = false;
+    private FloatingActionButton fab,fab1,fab2;
+    private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
 
     @Override
@@ -59,16 +64,29 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
 
         getSupportActionBar().setTitle("Documents");
 
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        fab.setOnClickListener((View.OnClickListener) this);
+        fab1.setOnClickListener((View.OnClickListener) this);
+        fab2.setOnClickListener((View.OnClickListener) this);
+
+
+
         listaDocs = (ListView) findViewById(R.id.lvDocs);
-        fbtnAdd = (FloatingActionButton) findViewById(R.id.fbtnAdicionar);
-        fbtnAdd.setOnClickListener(new View.OnClickListener() {
+        //fbtnAdd = (FloatingActionButton) findViewById(R.id.fbtnAdicionar);
+        /*fbtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent itDownload = new Intent(ctx, pastaDownloads.class);
                 startActivity(itDownload);
                 finish();
             }
-        });
+        });*/
 
 
 
@@ -100,18 +118,22 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             LayoutInflater inflater = LayoutInflater.from(ctx);
             View view = inflater.inflate(R.layout.modelolayout, parent, false);
             String[] a = files;
-            //File[] b = detalhe;
+            File[] b = detalhe;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            //String data = df.format(b[position].lastModified());
+            String data = df.format(b[position].lastModified());
             TextView t = (TextView) view.findViewById(R.id.tNome);
             TextView d = (TextView) view.findViewById(R.id.tDetalhe);
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
             ImageButton btn = (ImageButton) view.findViewById(R.id.btnmenu);
             btn.setTag(position);
-            if(position%2==0)
+            if(position%2==0) {
                 lay.setBackgroundColor(Color.parseColor("#CCCCCC"));
+            }
+            else {
+                lay.setBackgroundColor(Color.parseColor("#97a7a7"));
+            }
             t.setText(a[position]);
-            //d.setText("Última modificação: "+data);
+            d.setText("Última modificação: "+data);
             return view;
 
 
@@ -133,6 +155,8 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             }
         });
     }
+
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -226,4 +250,53 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         });
 
     }
+
+
+    public void animateFAB(){
+
+        if(isFabOpen){
+
+
+            fab.startAnimation(rotate_backward);
+            fab1.startAnimation(fab_close);
+            fab2.startAnimation(fab_close);
+            fab1.setClickable(false);
+            fab2.setClickable(false);
+            isFabOpen = false;
+            Log.d("Raj", "close");
+
+        } else {
+
+            fab.startAnimation(rotate_forward);
+            fab1.startAnimation(fab_open);
+            fab2.startAnimation(fab_open);
+            fab1.setClickable(true);
+            fab2.setClickable(true);
+            isFabOpen = true;
+            Log.d("Raj","open");
+
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.fab:
+
+                animateFAB();
+                break;
+            case R.id.fab1:
+                final Intent itConfig = new Intent(ctx, TelaConfiguracoes.class);
+                startActivity(itConfig);
+                Log.d("Raj", "Fab 1");
+                break;
+            case R.id.fab2:
+                final Intent itDownload = new Intent(ctx, pastaDownloads.class);
+                startActivity(itDownload);
+                Log.d("Raj", "Fab 2");
+                break;
+        }
+    }
+
 }

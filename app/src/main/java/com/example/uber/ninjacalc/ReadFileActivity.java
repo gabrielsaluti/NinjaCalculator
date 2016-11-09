@@ -31,6 +31,7 @@ public class ReadFileActivity extends AppCompatActivity {
         txtview.setText(FileHelper.ReadFile(this,"/"+nome));
 
         getSupportActionBar().setTitle(nome);
+        myToolbar.setTitleTextColor(0xFFFFFFFF);
 
 
     }

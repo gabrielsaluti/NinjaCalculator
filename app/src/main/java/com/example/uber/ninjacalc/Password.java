@@ -28,7 +28,8 @@ public class Password extends Activity {
 
 
         final Ninja_DB banco = new Ninja_DB(this);
-        final Intent it = new Intent(this,Menu.class);
+        //final Intent it = new Intent(this,Menu.class);
+        final Intent it = new Intent(this,Documentos.class);
         final EditText password1;
         final EditText password2;
         final EditText password3;

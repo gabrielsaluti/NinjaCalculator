@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.uber.ninjacalc.Documentos"
-    android:background="#424C55"
+    android:background="#172727"
     android:showDividers="beginning"
     android:orientation="vertical">
 
@@ -24,6 +24,7 @@
             android:id="@+id/toolbar"
             android:layout_weight="0"
             android:layout_height="60dp"
+            android:backgroundTint="#000000"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -31,8 +32,10 @@
                 android:id="@+id/toolbarTitle"
                 android:text="Downloads"
                 android:textAlignment="center"
-                android:textSize="40dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="25dp"
+                android:textColor="#ffffff"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"/>
 

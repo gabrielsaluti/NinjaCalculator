@@ -100,8 +100,12 @@ public class pastaDownloads extends AppCompatActivity implements AdapterView.OnI
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
             ImageButton btn = (ImageButton) view.findViewById(R.id.btnmenu);
             btn.setTag(position);
-            if(position%2==0)
+            if(position%2==0) {
                 lay.setBackgroundColor(Color.parseColor("#CCCCCC"));
+            }
+            else {
+                lay.setBackgroundColor(Color.parseColor("#97a7a7"));
+            }
             t.setText(a[position]);
             d.setText("Última modificação: "+data);
             return view;

@@ -17,7 +17,8 @@
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar"
         android:layout_weight="0"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        android:backgroundTint="#000000"/>
 
     <EditText
         android:text="Text"
@@ -28,6 +29,8 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        />
 
 </LinearLayout>
