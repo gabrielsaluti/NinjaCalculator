@@ -39,7 +39,9 @@
         <activity android:name=".TelaConfigLayout" />
         <activity android:name=".ReadFileActivity" />
         <activity android:name=".pastaDownloads" />
-        <activity android:name=".PDFReader"></activity>
+        <activity android:name=".PDFReader" />
+        <activity android:name=".DocumentosFake" />
+        <activity android:name=".TelaConfigFakeSenha"></activity>
     </application>
 
 </manifest>

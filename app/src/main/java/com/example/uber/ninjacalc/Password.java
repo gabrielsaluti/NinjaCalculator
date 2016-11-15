@@ -18,6 +18,10 @@ public class Password extends Activity {
     SharedPreferences prefs = null;
     private ArrayList<Config> configs;
     private static final String TAG = MainActivity.class.getSimpleName();
+    private EditText password1;
+    private EditText password2;
+    private EditText password3;
+    private EditText password4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +34,8 @@ public class Password extends Activity {
         final Ninja_DB banco = new Ninja_DB(this);
         //final Intent it = new Intent(this,Menu.class);
         final Intent it = new Intent(this,Documentos.class);
-        final EditText password1;
-        final EditText password2;
-        final EditText password3;
-        final EditText password4;
+        final Intent itfake = new Intent(this,DocumentosFake.class);
+
 
         password1 = (EditText) findViewById(R.id.password1);
         password2 = (EditText) findViewById(R.id.password2);
@@ -44,8 +46,9 @@ public class Password extends Activity {
         configs = banco.listarConfig();
 
         if (configs.size() == 0){
-            Config config = new Config ("1234", "12345",1 );
+            Config config = new Config ("1234", "6789",1 );
             banco.insert(config);
+
         }
 
         configs = banco.listarConfig();
@@ -119,12 +122,27 @@ public class Password extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() == 1) {
                     String senha = password1.getText().toString()+password2.getText().toString()+password3.getText().toString()+password4.getText().toString();
-                    //Log.d(TAG,senha);
-                    //Log.d(TAG, configs.get(0).getSenha());
+                    Log.d("digitado",senha);
+                    Log.d("original", configs.get(0).getSenha());
+                    Log.d("Fake",configs.get(0).getFakeSenha());
+
                     if (senha.toString().equals(configs.get(0).getSenha().toString())){
+                        password1.setText("");
+                        password2.setText("");
+                        password3.setText("");
+                        password4.setText("");
+                        password1.requestFocus();
                         startActivity(it);
 
-                    };
+                    }
+                    else if(senha.toString().equals(configs.get(0).getFakeSenha().toString())){
+                        password1.setText("");
+                        password2.setText("");
+                        password3.setText("");
+                        password4.setText("");
+                        password1.requestFocus();
+                        startActivity(itfake);
+                    }
                 }
             }
 
@@ -139,9 +157,11 @@ public class Password extends Activity {
     protected void onResume() {
         super.onResume();
 
+
         if (prefs.getBoolean("firstrun", true)) {
             Log.d(TAG,"First Run");
             prefs.edit().putBoolean("firstrun", false).commit();
         }
     }
+
 }

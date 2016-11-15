@@ -1,18 +1,14 @@
 package com.example.uber.ninjacalc;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,8 +34,7 @@ import java.nio.channels.FileChannel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-
-public class Documentos extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
+public class DocumentosFake extends AppCompatActivity implements  View.OnClickListener{
 
     private ListView listaDocs;
     private File curFolder;
@@ -62,7 +56,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_documentos);
+        setContentView(R.layout.activity_documentos_fake);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
@@ -75,9 +69,9 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
         rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
-        fab.setOnClickListener((View.OnClickListener) this);
-        fab1.setOnClickListener((View.OnClickListener) this);
-        fab2.setOnClickListener((View.OnClickListener) this);
+        fab.setOnClickListener( this);
+        fab1.setOnClickListener( this);
+        fab2.setOnClickListener(this);
 
 
 
@@ -94,14 +88,14 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
 
 
 
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, response);
-         }
+        //if(ContextCompat.checkSelfPermission(this,
+        //        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+        //ask for permission
+        //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, response);
+        // }
 
         //path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste";
-        path = Environment.getExternalStorageDirectory().toString() + "/Hide/.NinjaHide";
+        path = Environment.getExternalStorageDirectory().toString() + "/Hide/.NinjaHideFake";
         Log.d(TAG,path);
         curFolder = new File(path);
         files = curFolder.list();
@@ -111,9 +105,6 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             Log.d(TAG,"ta nulo");
             files = new String[1];
             files[0] = "Não existem documentos adicionados";
-            if (files != null){
-                Log.d("tet","não nulo");
-            }
         }
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(),
@@ -127,13 +118,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             String[] a = files;
             File[] b = detalhe;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            String data;
-            try {
-                data = df.format(b[position].lastModified());
-            }
-            catch (Exception e){
-                data = "Não fornecida.";
-            }
+            //String data = df.format(b[position].lastModified());
             TextView t = (TextView) view.findViewById(R.id.tNome);
             TextView d = (TextView) view.findViewById(R.id.tDetalhe);
             LinearLayout lay = (LinearLayout) view.findViewById(R.id.lay);
@@ -146,7 +131,7 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
                 lay.setBackgroundColor(Color.parseColor("#97a7a7"));
             }
             t.setText(a[position]);
-            d.setText("Última modificação: "+data);
+            //d.setText("Última modificação: "+data);
             return view;
 
 
@@ -154,48 +139,11 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
 
         listaDocs.setAdapter(adapter);
 
-        listaDocs.setOnItemClickListener(this);
         Log.d(TAG,"setei");
 
-        /*listaDocs.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                           int pos, long id) {
-                final int position = pos;
-
-
-                return true;
-            }
-        });*/
     }
 
 
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final Intent itTexto = new Intent(this, ReadFileActivity.class);
-        final Intent itPDF = new Intent(this, PDFReader.class);
-        //Log.d(TAG,"clicado");
-        //Toast.makeText(ctx,"cliquei",Toast.LENGTH_LONG).show();
-        itTexto.putExtra("nome",files[position].toString());
-        itPDF.putExtra("nome",files[position].toString());
-
-        String nome = files[position].toString();
-        String[] arquivo = nome.split("\\.");
-        String tipoArquivo = arquivo[1];
-        Log.d(TAG, tipoArquivo);
-
-        if (tipoArquivo.equals("txt")){
-            startActivity(itTexto);
-        }
-        else if (tipoArquivo.equals("pdf")){
-            startActivity(itPDF);
-        }
-        else if (1==1){
-            Toast.makeText(this,"Não podemos abrir arquivos ."+ tipoArquivo,Toast.LENGTH_SHORT).show();
-        }
-
-    }
     private void copyFile(File src, File dst, String nomearquivo) throws IOException {
         FileInputStream inStream = new FileInputStream(src);
 
@@ -223,35 +171,10 @@ public class Documentos extends AppCompatActivity implements AdapterView.OnItemC
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
-                alertDialog.setTitle("Tornar Público");
-                alertDialog.setMessage("Você deseja tornar este arquivo público novamente?");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.setTitle("Em Manutenção");
+                alertDialog.setMessage("Em breve");
 
-                                String dst = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() +"/";
-                                //String src = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Teste/"+files[pos].toString();
-                                String src = path + "/" + files[pos].toString();
-                                Log.d(TAG,src);
-                                File fileSrc = new File(src);
-                                File fileDst = new File(dst);
-                                try {
-                                    copyFile(fileSrc,fileDst, files[pos].toString());
-                                    Log.d(TAG,"copiado de volta");
-                                    File fdelete = new File(src);
-                                    fdelete.delete();
-                                    finish();
-                                    final Intent itDocs = new Intent(ctx, Documentos.class);
-                                    startActivity(itDocs);
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(ctx,"Erro ao tornar arquivo público.",Toast.LENGTH_LONG).show();
-                                }
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();

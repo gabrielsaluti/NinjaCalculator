@@ -32,7 +32,7 @@ public class TelaConfiguracoes extends AppCompatActivity {
 
         final Intent itSenha = new Intent(this, TelaConfigSenha.class);
         final Intent itLayout = new Intent(this, TelaConfigLayout.class);
-
+        final Intent itFake = new Intent(this, TelaConfigFakeSenha.class);
 
         listaconfig = (ListView) findViewById(R.id.listaconfig);
 
@@ -62,6 +62,9 @@ public class TelaConfiguracoes extends AppCompatActivity {
                 }
                 else if (position == 1){
                     startActivity(itLayout);
+                }
+                else if (position == 2){
+                    startActivity(itFake);
                 }
             }
         });
